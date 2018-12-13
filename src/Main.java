@@ -51,7 +51,7 @@ public class Main {
         }
 
         for (int i = 0; i < b.length; i++) {
-            for (int j = 1; j < c.length + 1; j++) {
+            for (int j = 1; j < c.length; j++) {
                 arr[i][j] = -A[i][j];
             }
         }
