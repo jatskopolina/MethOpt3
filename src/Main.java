@@ -69,9 +69,21 @@ public class Main {
 
     }
 
+    private static boolean isTheGoalMinimum() {
+        boolean isMinimum = true;
+        for(int j = 1; j < c.length + 1; j++) {
+            isMinimum = isMinimum && arr[b.length][j] >= 0;
+        }
+        return isMinimum;
+    }
+
 
 
     public static void main(String[] args) {
         initTable();
+
+        while(!isTheGoalMinimum()) {
+
+        }
     }
 }
