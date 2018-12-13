@@ -119,6 +119,16 @@ public class Main {
         }
     }
 
+    private static void switchTheXes() {
+        for (int i = 0; i < b.length + 1; i++) {
+            for (int j = 0; j < c.length + 1; j++) {
+                if (i != permittingRow && j != permittingColumn) {
+                    // TODO
+                }
+            }
+        }
+    }
+
     public static void main(String[] args) {
         initTable();
 
