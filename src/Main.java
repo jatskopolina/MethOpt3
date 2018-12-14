@@ -51,8 +51,8 @@ public class Main {
         }
 
         for (int i = 0; i < b.length; i++) {
-            for (int j = 1; j < c.length; j++) {
-                arr[i][j] = -A[i][j];
+            for (int j = 1; j < c.length + 1; j++) {
+                arr[i][j] = -A[i][j - 1];
             }
         }
 
@@ -68,7 +68,6 @@ public class Main {
         for (int i = 0; i < b.length; i++) {
             basisX[i] = c.length + i + 1;
         }
-
     }
 
     private static boolean isTheGoalMinimum() {
@@ -120,21 +119,39 @@ public class Main {
     }
 
     private static void switchTheXes() {
+        double bearingValue = arr[permittingRow][permittingColumn];
+
         for (int i = 0; i < b.length + 1; i++) {
             for (int j = 0; j < c.length + 1; j++) {
                 if (i != permittingRow && j != permittingColumn) {
-                    // TODO
+                    arr[i][j] =
+                        arr[i][j] * arr[permittingRow][permittingColumn] -
+                                arr[permittingRow][j] * arr[i][permittingColumn];
                 }
             }
         }
+
+        for (int i = 0; i < c.length + 1; i++) {
+            arr[permittingRow][i] *= -1;
+        }
+        arr[permittingRow][permittingColumn] = 1;
+
+        for (int i = 0; i < b.length + 1; i++) {
+            for (int j = 0; j < c.length + 1; j++) {
+                arr[i][j] = arr[i][j] / bearingValue;
+            }
+        }
+
+        int tmp = freeX[permittingColumn - 1];
+        freeX[permittingColumn - 1] = basisX[permittingRow];
+        basisX[permittingRow] = tmp;
     }
 
     public static void main(String[] args) {
         initTable();
-
         while(!isTheGoalMinimum()) {
             findTheBearingElement();
-            // TODO
+            switchTheXes();
         }
         reportTheSolution();
     }
